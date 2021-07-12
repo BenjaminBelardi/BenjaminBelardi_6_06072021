@@ -17,18 +17,31 @@ export default class NewBill {
   }
   handleChangeFile = e => {
     const file = this.document.querySelector(`input[data-testid="file"]`).files[0]
-    const filePath = e.target.value.split(/\\/g)
-    const fileName = filePath[filePath.length-1]
-    this.firestore
-      .storage
-      .ref(`justificatifs/${fileName}`)
-      .put(file)
-      .then(snapshot => snapshot.ref.getDownloadURL())
-      .then(url => {
+    //const filePath = e.target.value.split(/\\/g)
+    //const fileName = filePath[filePath.length-1]
+    const fileName = e.target.files[0].name;
+    const validExtention = ["jpg" , "jpeg" , "png"];
+    const fileExtention = fileName.split(".").pop().toLowerCase();
+    const btn = this.document.getElementById("btn-send-bill")
+    if (validExtention.includes(fileExtention)){
+      btn.disabled = false;
+      if (this.firestore) {
+        this.firestore
+        .storage
+        .ref(`justificatifs/${fileName}`)
+        .put(file)
+        .then(snapshot => snapshot.ref.getDownloadURL())
+        .then(url => {
         this.fileUrl = url
         this.fileName = fileName
-      })
+        })
+      }
+    }else{
+      btn.disabled = true;
+      alert("seul les fichier .jpg , .jpeg ou png sont accèptés")
   }
+}
+
   handleSubmit = e => {
     e.preventDefault()
     console.log('e.target.querySelector(`input[data-testid="datepicker"]`).value', e.target.querySelector(`input[data-testid="datepicker"]`).value)
