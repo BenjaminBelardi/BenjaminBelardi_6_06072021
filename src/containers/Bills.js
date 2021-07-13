@@ -24,7 +24,7 @@ export default class {
     const billUrl = icon.getAttribute("data-bill-url")
     const imgWidth = Math.floor($('#modaleFile').width() * 0.5)
     $('#modaleFile').find(".modal-body").html(`<div style='text-align: center;'><img width=${imgWidth} src=${billUrl} /></div>`)
-    $('#modaleFile').modal('show')
+    if (typeof $('#modaleFile').modal === 'function') $('#modaleFile').modal('show')
   }
 
   // not need to cover this function by tests
@@ -33,7 +33,9 @@ export default class {
       JSON.parse(localStorage.getItem('user')).email : ""
     if (this.firestore) {
       return this.firestore
-      .bills()
+      //date order correction purpose
+      .bills().orderBy("date" , "desc")
+      //
       .get()
       .then(snapshot => {
         const bills = snapshot.docs

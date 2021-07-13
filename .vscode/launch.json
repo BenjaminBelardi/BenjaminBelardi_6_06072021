@@ -5,7 +5,7 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "command": "npx jest src/__tests__/NewBill.js",
+            "command": "npx jest src/__tests__/Bills.js",
             "name": "Run npm jest",
             "request": "launch",
             "type": "node-terminal"
