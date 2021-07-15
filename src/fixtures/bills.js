@@ -23,7 +23,7 @@ export const bills = [{
   "pct": 20,
   "type": "Transports",
   "email": "a@a",
-  "fileUrl": "https://firebasestorage.googleapis.com/v0/b/billable-677b6.a…61.jpeg?alt=media&token=7685cd61-c112-42bc-9929-8a799bb82d8b",
+  "fileUrl": "https://firebasestorage.googleapis.com/v0/b/billable-677b6.appspot.com/o/justificatifs%2Ffacture-restaurant.jpg?alt=media&token=08d0a7f0-1add-4cd5-9a25-3c1555a6327c",
   "date": "2001-01-01",
   "status": "refused",
   "commentAdmin": "en fait non"

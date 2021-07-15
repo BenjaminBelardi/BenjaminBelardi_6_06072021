@@ -40,6 +40,32 @@ describe("Given I am connected as an employee", () => {
   describe("when i click on newbill button",() =>{
     test ("A new bill page is open",() =>{
       //check hendleClickBill 
+      Object.defineProperty(window, 'localStorage', { value: localStorageMock })
+      window.localStorage.setItem('user', JSON.stringify({
+        type: 'Employee',
+      }))
+
+      // we have to mock navigation to test it
+      const onNavigate = (pathname) => {
+        document.body.innerHTML = ROUTES({ pathname })
+      }
+
+      const newBills = new Bills ({
+        document,
+        onNavigate,
+        firestore :null,
+        localStorage :  window.localStorage
+      })
+
+      const html = BillsUI({ data: []})
+      document.body.innerHTML = html
+      const btnNewBill = screen.getByTestId("btn-new-bill")
+      const handleClickNewBill = jest.fn(e => newBills.handleClickNewBill(e))
+      btnNewBill.addEventListener("click", handleClickNewBill)
+      fireEvent.click(btnNewBill)
+      expect(handleClickNewBill).toHaveBeenCalled()
+      const formNewBill = screen.getByTestId('form-new-bill') 
+      expect(formNewBill).toBeTruthy
     })
   })
 })
@@ -94,13 +120,15 @@ describe("Given I am connected as an employee", () => {
         localStorage :  window.localStorage
       })
 
-      const iconEye = screen.queryAllByTestId("icon-eye")
-      const handelClickIconEye = jest.fn(e => newBills.handleClickIconEye(iconEye[0]))
-      iconEye[0].addEventListener("click", handelClickIconEye)
-      fireEvent.click(iconEye[0])
+      const iconEyeTest = screen.queryAllByTestId('icon-eye')
+      const handelClickIconEye = jest.fn(e => newBills.handleClickIconEye)
+      iconEyeTest[3].addEventListener("click", handelClickIconEye)
+      fireEvent.click(iconEyeTest[3])
       expect(handelClickIconEye).toHaveBeenCalled()
-  
 
+      const modale = document.getElementById('modaleFile')
+      expect(modale).toBeTruthy()
+  
     })
 
 
