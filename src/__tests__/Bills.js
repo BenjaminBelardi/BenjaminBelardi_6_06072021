@@ -121,7 +121,7 @@ describe("Given I am connected as an employee", () => {
         localStorage :  window.localStorage
       })
 
-      //moack JQuery.modal
+      //mock JQuery.modal
       $.fn.modal = jest.fn()
       
       const iconEyeTest = screen.queryAllByTestId('icon-eye')
@@ -134,6 +134,4 @@ describe("Given I am connected as an employee", () => {
       expect(modale).toBeTruthy()
   
     })
-
-
   })
