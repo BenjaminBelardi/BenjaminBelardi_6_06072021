@@ -121,6 +121,8 @@ describe("Given I am connected as an employee", () => {
         localStorage :  window.localStorage
       })
 
+      //moack JQuery.modal
+      $.fn.modal = jest.fn()
       
       const iconEyeTest = screen.queryAllByTestId('icon-eye')
       const handelClickIconEye = jest.fn(e => newBills.handleClickIconEye)
