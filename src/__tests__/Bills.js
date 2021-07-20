@@ -5,6 +5,7 @@ import { localStorageMock } from "../__mocks__/localStorage.js"
 import firebase from "../__mocks__/firebase"
 import { ROUTES  } from '../constants/routes.js'
 import Bills from "../containers/Bills.js"
+import { query } from "express"
 
 describe("Given I am connected as an employee", () => {
   describe("When I am on Bills Page", () => {
@@ -120,6 +121,7 @@ describe("Given I am connected as an employee", () => {
         localStorage :  window.localStorage
       })
 
+      
       const iconEyeTest = screen.queryAllByTestId('icon-eye')
       const handelClickIconEye = jest.fn(e => newBills.handleClickIconEye)
       iconEyeTest[3].addEventListener("click", handelClickIconEye)

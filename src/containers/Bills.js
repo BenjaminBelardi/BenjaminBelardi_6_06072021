@@ -34,8 +34,7 @@ export default class {
     if (this.firestore) {
       return this.firestore
       //date order correction purpose
-      .bills().orderBy("date" , "desc")
-      //
+      .bills().orderBy("date", "desc")
       .get()
       .then(snapshot => {
         const bills = snapshot.docs
