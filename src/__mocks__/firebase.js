@@ -67,7 +67,10 @@ export default {
   },
   post : (data) => {
     return Promise.resolve(
-      data = JSON.stringify(data)
+      data = {
+        id : "adentkdfioFDFdo"
+      }
+      //data = JSON.stringify(data)
     )
   }
 }
